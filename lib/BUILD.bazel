@@ -1,0 +1,11 @@
+load(
+    "@obazl_rules_ocaml//ocaml:rules.bzl",
+    "ocaml_module",
+)
+
+ocaml_module(
+    name = "uri",
+    struct = "uri.ml",
+    deps_opam = ["stringext", "angstrom"],
+    # deps = ["@opam//pkg:stringext"],
+)
