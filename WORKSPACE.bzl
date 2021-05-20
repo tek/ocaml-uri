@@ -14,9 +14,10 @@ opam = OpamConfig(
     builds = {
         "1": BuildConfig(
             default = True,
-            switch = "default",
-            compiler = "default",
-            packages = opam_pkgs
+            switch = "4.12",
+            compiler = "4.12",
+            packages = opam_pkgs,
+            install = True
         ),
     }
 )

@@ -14,13 +14,14 @@ http_archive(
 
 http_archive(
     name = "obazl_rules_ocaml",
-    strip_prefix = "rules_ocaml-1.0.0-BETA.1",
+    strip_prefix = "rules_ocaml-9a700d54e86ffce2da0e2bd425aebe2c79f5167c",
     urls = [
         "https://github.com/obazl/rules_ocaml/archive/9a700d54e86ffce2da0e2bd425aebe2c79f5167c.tar.gz"
     ],
-    sha256 = "b20066b86d0f877b297d4e0400130d0e3a2be86c100460f65bf6db61dd6515a6"
+    sha256 = "3ef69cca2c7829b3bc839c31eef8c02f498f8319ca33b4a27c740f8cbff24f51"
 )
 
 load("@obazl_rules_ocaml//ocaml:bootstrap.bzl", "ocaml_configure")
+
 load("//:WORKSPACE.bzl", opam = "opam")
-ocaml_configure(opam = opam, build = "1", verbose = True)
+ocaml_configure(opam = opam, build = "1")
