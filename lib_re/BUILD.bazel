@@ -1,0 +1,32 @@
+load("@obazl_rules_ocaml//ocaml:rules.bzl", "ocaml_module", "ocaml_library", "ocaml_signature")
+
+ocaml_signature(
+  name = "uri_re_sig",
+  src = "uri_re.mli",
+    deps_opam = ["stringext", "re"],
+)
+
+ocaml_module(
+    name = "uri_re",
+    struct = "uri_re.ml",
+    sig = "uri_re_sig",
+    deps_opam = ["stringext", "re"],
+)
+
+ocaml_signature(
+  name = "uri_legacy_sig",
+  src = "uri_legacy.mli",
+    deps_opam = ["stringext", "re"],
+)
+
+ocaml_module(
+    name = "uri_legacy",
+    struct = "uri_legacy.ml",
+    sig = "uri_legacy_sig",
+    deps_opam = ["stringext", "re"],
+)
+
+ocaml_library(
+    name = "uri-re",
+    modules = ["uri_re", "uri_legacy"],
+)

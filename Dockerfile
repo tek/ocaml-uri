@@ -8,3 +8,4 @@ RUN curl https://bazel.build/bazel-release.pub.gpg | apt-key add -
 RUN curl -LO "https://github.com/bazelbuild/bazel/releases/download/4.0.0/bazel_4.0.0-linux-x86_64.deb" && dpkg -i bazel_*.deb
 USER opam
 RUN opam install ocamlfind stringext angstrom
+RUN opam install re
