@@ -9,3 +9,6 @@ RUN curl -LO "https://github.com/bazelbuild/bazel/releases/download/4.0.0/bazel_
 USER opam
 RUN opam install ocamlfind stringext angstrom
 RUN opam install re
+RUN opam install sexplib
+RUN opam install ppx_sexp_conv
+RUN opam install ppx_deriving
