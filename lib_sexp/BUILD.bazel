@@ -1,27 +1,2 @@
-load(
-  "@obazl_rules_ocaml//ocaml:rules.bzl",
-  "ocaml_module",
-  "ocaml_library",
-  "ocaml_signature",
-  "ppx_module",
-  "ppx_library",
-)
-
-ocaml_signature(
-    name = "uri_sexp_sig",
-    src = "uri_sexp.mli",
-    deps_opam = ["sexplib"],
-    deps = ["//lib:uri-lib"],
-)
-
-ppx_module(
-  name = "uri_sexp",
-  struct = "uri_sexp.ml",
-  deps_opam = ["sexplib", "ppx_sexp_conv"],
-  deps = ["//lib:uri-lib"],
-)
-
-ppx_library(
-    name = "uri-sexp",
-    modules = ["uri_sexp"],
-)
+load("//:bzl/library.bzl", "uri_library")
+uri_library(["uri_sexp"], ["sexplib", "ppx_sexp_conv"], ["//lib:lib"], ppx=True)
