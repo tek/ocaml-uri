@@ -1,0 +1,18 @@
+load(
+    "@obazl_rules_ocaml//ocaml:rules.bzl",
+    "ocaml_module",
+    "ocaml_test",
+)
+
+ocaml_module(
+    name = "test_runner",
+    struct = "test_runner.ml",
+    deps_opam = ["oUnit"],
+    deps = ["//lib:lib-uri", "//etc:short"],
+)
+
+ocaml_test(
+    name = "test",
+    main = "test_runner",
+    deps = ["//etc:short"],
+)

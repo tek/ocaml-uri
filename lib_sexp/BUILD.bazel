@@ -1,2 +1,8 @@
-load("//:bzl/library.bzl", "uri_library")
-uri_library(["uri_sexp"], ["sexplib", "ppx_sexp_conv"], ["//lib:lib"], ppx=True)
+load("//:bzl/library.bzl", "simple_lib")
+simple_lib(
+    name = "lib-uri_sexp",
+    modules = ["uri_sexp"],
+    deps_opam = ["sexplib", "ppx_sexp_conv"],
+    deps = ["//lib:lib-uri"],
+    ppx=True,
+)

@@ -1,2 +1,6 @@
-load("//:bzl/library.bzl", "uri_library")
-uri_library(["uri_re", "uri_legacy"], ["stringext", "re"])
+load("//:bzl/library.bzl", "simple_lib")
+simple_lib(
+    name = "lib-uri_re",
+    modules = ["uri_re", "uri_legacy"],
+    deps_opam = ["stringext", "re"],
+)

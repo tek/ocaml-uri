@@ -1,0 +1,7 @@
+load("//:bzl/services.bzl", "services_lib")
+load("//:bzl/library.bzl", "simple_lib")
+
+# simple_lib(name = "short", modules = ["uri_services"], deps = ["//lib:lib-uri"])
+
+services_lib(name = "short", services_name = "uri_services")
+services_lib(name = "full", services_name = "uri_services_full")

@@ -17,7 +17,7 @@ opam = OpamConfig(
             switch = "4.12",
             compiler = "4.12",
             packages = opam_pkgs,
-            install = True
+            install = True,
         ),
     }
 )

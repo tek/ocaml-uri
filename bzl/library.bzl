@@ -7,35 +7,33 @@ load(
     "ppx_library",
 )
 
-def uri_sig(name, deps_opam=[], deps=[]):
+def sig(name, **kw):
     ocaml_signature(
         name = "{}_sig".format(name),
         src = "{}.mli".format(name),
-        deps_opam = deps_opam,
-        deps = deps,
+        **kw,
     )
 
-def uri_library(modules, deps_opam=[], deps=[], ppx=False):
+def lib(modules, name="lib", deps_opam=[], deps=[], ppx=False, **kw):
     module = ppx_module if ppx else ocaml_module
     library = ppx_library if ppx else ocaml_library
-    for name in modules:
-        ocaml_signature(
-            name = "{}_sig".format(name),
-            src = "{}.mli".format(name),
-            deps_opam = deps_opam,
-            deps = deps,
-        )
-
+    for (mod_name, mod) in modules:
+        sig(mod_name, deps_opam = deps_opam, deps = deps)
         module(
-            name = name,
-            struct = "{}.ml".format(name),
-            sig = "{}_sig".format(name),
+            name = mod_name,
+            struct = mod,
+            sig = "{}_sig".format(mod_name),
             deps_opam = deps_opam,
             deps = deps,
         )
-
+    modules = [n for (n, m) in modules]
     library(
-        name = "lib",
+        name = name,
         modules = modules,
         visibility = ["//visibility:public"],
+        **kw,
     )
+
+def simple_lib(modules, **kw):
+    targets = [(m, m + ".ml") for m in modules]
+    return lib(targets, **kw)

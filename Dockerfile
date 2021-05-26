@@ -12,3 +12,4 @@ RUN opam install re
 RUN opam install sexplib
 RUN opam install ppx_sexp_conv
 RUN opam install ppx_deriving
+RUN opam install ounit
