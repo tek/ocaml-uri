@@ -26,7 +26,7 @@ def generate_services_module(name, ext):
 def services_lib(name, services_name):
     generate_services_module(services_name, name)
     lib(
-        name = name,
+        name = "services_" + name,
         modules = [(services_name, "gen_" + services_name, services_name + "_sig", services_name + "_mli")],
         deps = ["//lib:lib-uri"],
     )

@@ -12,6 +12,6 @@ ocaml_module(
 
 ocaml_executable(
     name = "exe",
-    deps = ["gen_services"],
+    main = "gen_services",
     visibility = ["//visibility:public"],
 )
