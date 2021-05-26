@@ -1,4 +1,5 @@
 load("//:bzl/library.bzl", "simple_lib")
+
 simple_lib(
     name = "lib-uri_re",
     modules = ["uri_re", "uri_legacy"],

@@ -1,6 +1,7 @@
 load(
     "@obazl_rules_ocaml//ocaml:rules.bzl",
     "ocaml_module",
+    "ppx_module",
     "ocaml_test",
 )
 
@@ -11,8 +12,13 @@ ocaml_module(
     deps = ["//lib:lib-uri", "//etc:short"],
 )
 
-ocaml_test(
-    name = "test",
-    main = "test_runner",
-    deps = ["//etc:short"],
+ocaml_test(name = "test", main = "test_runner")
+
+ppx_module(
+    name = "test_runner_sexp",
+    struct = "test_runner_sexp.ml",
+    deps_opam = ["oUnit"],
+    deps = ["//lib_sexp:lib-uri_sexp", "//lib:lib-uri", "//etc:short"],
 )
+
+ocaml_test(name = "test_sexp", main = "test_runner_sexp")
