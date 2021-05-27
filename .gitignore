@@ -8,4 +8,4 @@ _opam/
 /bazel-ocaml-uri
 /bazel-out
 /bazel-testlogs
-/bazel-uri-build
+/bazel-ocaml-uri-build
