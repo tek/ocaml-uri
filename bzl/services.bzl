@@ -13,14 +13,14 @@ def generate_services_module(name, ext):
         name = "gen_" + name,
         srcs = ["services." + ext, "uri_services_raw.ml"],
         outs = [name + ".ml"],
-        cmd = "$(location //config:exe) $(location services." + ext + ") > $@ && cat $(location uri_services_raw.ml) >> $@",
+        cmd = "$(execpath //config:exe) $(execpath services." + ext + ") > $@ && cat $(execpath uri_services_raw.ml) >> $@",
         tools = ["//config:exe"],
     )
     native.genrule(
         name = name + "_mli",
         srcs = [name + "_in.mli"],
         outs = [name + ".mli"],
-        cmd = "cp $(location " + name + "_in.mli) $@",
+        cmd = "cp $(execpath " + name + "_in.mli) $@",
     )
 
 def services_lib(name, services_name):
