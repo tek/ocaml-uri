@@ -13,11 +13,11 @@ http_archive(
 
 http_archive(
     name = "obazl_rules_ocaml",
-    strip_prefix = "rules_ocaml-bbcc7bfe3787038b2207e07a1e795fcab32dc676",
+    strip_prefix = "rules_ocaml-66f50d592728809d4d54aa4b081768023806a4f8",
     urls = [
-        "https://github.com/obazl/rules_ocaml/archive/bbcc7bfe3787038b2207e07a1e795fcab32dc676.tar.gz"
+        "https://github.com/tek/rules_ocaml/archive/66f50d592728809d4d54aa4b081768023806a4f8.tar.gz"
     ],
-    sha256 = "71cf985899e88eb3c8ebf64b2853b6f667ac50bd887ccbd421c32cc8b6f6800b"
+    sha256 = "bb81f3f61adbb8a732e662586f81aa4a11173f5a75d3158589fd406364f0e63c"
 )
 
 load("@obazl_rules_ocaml//ocaml:bootstrap.bzl", "ocaml_configure")
