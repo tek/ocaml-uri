@@ -1,4 +1,4 @@
-load("//:bzl/library.bzl", "lib")
+load("//:bzl/library.bzl", "lib", "copy_interface")
 load(
     "@obazl_rules_ocaml//ocaml:rules.bzl",
     "ocaml_module",
@@ -12,16 +12,11 @@ def generate_services_module(name, ext):
     native.genrule(
         name = "gen_" + name,
         srcs = ["services." + ext, "uri_services_raw.ml"],
-        outs = [name + ".ml"],
+        outs = ["__obazl/" + name + ".ml"],
         cmd = "$(execpath //config:exe) $(execpath services." + ext + ") > $@ && cat $(execpath uri_services_raw.ml) >> $@",
         tools = ["//config:exe"],
     )
-    native.genrule(
-        name = name + "_mli",
-        srcs = [name + "_in.mli"],
-        outs = [name + ".mli"],
-        cmd = "cp $(execpath " + name + "_in.mli) $@",
-    )
+    copy_interface(name, name)
 
 def services_lib(name, services_name):
     generate_services_module(services_name, name)

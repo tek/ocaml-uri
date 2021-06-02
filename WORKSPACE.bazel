@@ -11,14 +11,15 @@ http_archive(
     sha256 = "1c531376ac7e5a180e0237938a2536de0c54d93f5c278634818e0efc952dd56c",
 )
 
-http_archive(
-    name = "obazl_rules_ocaml",
-    strip_prefix = "rules_ocaml-66f50d592728809d4d54aa4b081768023806a4f8",
-    urls = [
-        "https://github.com/tek/rules_ocaml/archive/66f50d592728809d4d54aa4b081768023806a4f8.tar.gz"
-    ],
-    sha256 = "bb81f3f61adbb8a732e662586f81aa4a11173f5a75d3158589fd406364f0e63c"
-)
+# http_archive(
+#     name = "obazl_rules_ocaml",
+#     strip_prefix = "rules_ocaml-66f50d592728809d4d54aa4b081768023806a4f8",
+#     urls = [
+#         "https://github.com/tek/rules_ocaml/archive/66f50d592728809d4d54aa4b081768023806a4f8.tar.gz"
+#     ],
+#     sha256 = "bb81f3f61adbb8a732e662586f81aa4a11173f5a75d3158589fd406364f0e63c"
+# )
+local_repository(name = "obazl_rules_ocaml", path = "../../bazel/rules_ocaml")
 
 load("@obazl_rules_ocaml//ocaml:bootstrap.bzl", "ocaml_configure")
 
