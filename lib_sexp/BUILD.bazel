@@ -1,16 +1,17 @@
 load(
     "@obazl_rules_ocaml//ocaml:rules.bzl",
-    "ocaml_module",
-    "ocaml_library",
     "ocaml_signature",
-    "ppx_module",
     "ppx_executable",
     "ppx_library",
+    "ppx_module",
 )
 load("@bazel_skylib//rules:write_file.bzl", "write_file")
-load("//:bzl/library.bzl", "lib", "copy_interface")
+load("//:bzl/library.bzl", "copy_interface")
 
-copy_interface(name = "uri_sexp", out = "Uri_sexp")
+copy_interface(
+    name = "uri_sexp",
+    out = "Uri_sexp",
+)
 
 ocaml_signature(
     name = "uri_sexp_sig",
@@ -21,9 +22,8 @@ ocaml_signature(
 
 ppx_module(
     name = "driver",
-    struct = ":driver.ml",
     deps_opam = ["ppxlib"],
-    opts = ["-linkall"],
+    struct = ":driver.ml",
 )
 
 write_file(
@@ -34,18 +34,18 @@ write_file(
 
 ppx_executable(
     name = "sexp_preprocessor",
-    main = ":driver",
     deps_opam = ["ppx_sexp_conv"],
+    main = ":driver",
 )
 
 ppx_module(
     name = "uri_sexp",
-    struct = "uri_sexp.ml",
-    sig = ":uri_sexp_sig",
-    deps_opam = ["sexplib", "ppx_sexp_conv"],
-    deps = ["//lib:lib-uri"],
+    deps_opam = ["ppx_sexp_conv"],
     ppx = ":sexp_preprocessor",
     ppx_print = "@ppx//print:text",
+    sig = ":uri_sexp_sig",
+    struct = "uri_sexp.ml",
+    deps = ["//lib:lib-uri"],
 )
 
 ppx_library(

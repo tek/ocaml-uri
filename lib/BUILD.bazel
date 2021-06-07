@@ -2,6 +2,9 @@ load("//:bzl/library.bzl", "simple_lib")
 
 simple_lib(
     name = "lib-uri",
+    deps_opam = [
+        "stringext",
+        "angstrom",
+    ],
     modules = ["uri"],
-    deps_opam = ["stringext", "angstrom"],
 )

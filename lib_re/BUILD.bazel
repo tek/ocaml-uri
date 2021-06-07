@@ -2,6 +2,12 @@ load("//:bzl/library.bzl", "simple_lib")
 
 simple_lib(
     name = "lib-uri_re",
-    modules = ["uri_re", "uri_legacy"],
-    deps_opam = ["stringext", "re"],
+    deps_opam = [
+        "stringext",
+        "re",
+    ],
+    modules = [
+        "uri_re",
+        "uri_legacy",
+    ],
 )

@@ -1,10 +1,10 @@
 load(
     "@obazl_rules_ocaml//ocaml:rules.bzl",
-    "ocaml_module",
     "ocaml_library",
+    "ocaml_module",
     "ocaml_signature",
-    "ppx_module",
     "ppx_library",
+    "ppx_module",
 )
 load("@bazel_skylib//rules:copy_file.bzl", "copy_file")
 
@@ -20,21 +20,21 @@ def copy_interface(name, out):
         out = "__obazl/" + out + ".mli",
     )
 
-def sig_module(name, struct, sig, sig_src, ppx=False, **kw):
+def sig_module(name, struct, sig, sig_src, ppx = False, **kw):
     module = ppx_module if ppx else ocaml_module
     ocaml_signature(name = sig, src = sig_src, **kw)
-    module(name=name, struct=struct, sig=sig, **kw)
+    module(name = name, struct = struct, sig = sig, **kw)
 
-def lib(modules, name="lib", deps_opam=[], deps=[], ppx=False, **kw):
+def lib(modules, name = "lib", deps_opam = [], deps = [], ppx = False, **kw):
     library = ppx_library if ppx else ocaml_library
     for (mod_name, struct, sig, sig_src) in modules:
-        sig_module(mod_name, struct, sig, sig_src, deps_opam=deps_opam, deps=deps, ppx=ppx)
+        sig_module(mod_name, struct, sig, sig_src, deps_opam = deps_opam, deps = deps, ppx = ppx)
     module_targets = [n for (n, m, s, ss) in modules]
     library(
         name = name,
         modules = module_targets,
         visibility = ["//visibility:public"],
-        **kw,
+        **kw
     )
 
 def simple_lib(modules, **kw):

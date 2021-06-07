@@ -1,24 +1,37 @@
 load(
     "@obazl_rules_ocaml//ocaml:rules.bzl",
     "ocaml_module",
-    "ppx_module",
     "ocaml_test",
+    "ppx_module",
 )
 
 ocaml_module(
     name = "test_runner",
-    struct = "test_runner.ml",
     deps_opam = ["oUnit"],
-    deps = ["//lib:lib-uri", "//etc:services_short"],
+    struct = "test_runner.ml",
+    deps = [
+        "//etc:services_short",
+        "//lib:lib-uri",
+    ],
 )
 
-ocaml_test(name = "test", main = "test_runner")
+ocaml_test(
+    name = "test",
+    main = "test_runner",
+)
 
 ppx_module(
     name = "test_runner_sexp",
-    struct = "test_runner_sexp.ml",
     deps_opam = ["oUnit"],
-    deps = ["//lib_sexp:lib-uri-sexp", "//lib:lib-uri", "//etc:services_short"],
+    struct = "test_runner_sexp.ml",
+    deps = [
+        "//etc:services_short",
+        "//lib:lib-uri",
+        "//lib_sexp:lib-uri-sexp",
+    ],
 )
 
-ocaml_test(name = "test_sexp", main = "test_runner_sexp")
+ocaml_test(
+    name = "test_sexp",
+    main = "test_runner_sexp",
+)
