@@ -1,12 +1,4 @@
-load("//:bzl/library.bzl", "lib", "copy_interface")
-load(
-    "@obazl_rules_ocaml//ocaml:rules.bzl",
-    "ocaml_module",
-    "ocaml_library",
-    "ocaml_signature",
-    "ppx_module",
-    "ppx_library",
-)
+load("//:bzl/library.bzl", "copy_interface", "lib")
 
 def generate_services_module(name, ext):
     native.genrule(
