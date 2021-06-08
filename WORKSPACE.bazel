@@ -1,15 +1,9 @@
 workspace(name = "uri")
 
-local_repository(
-    name = "obazl_rules_ocaml",
-    path = "../../bazel/rules_ocaml",
-)
-
-load("//bzl:repositories.bzl", "uri_dependencies")
-uri_dependencies()
-
-load("@obazl_rules_ocaml//ocaml:repositories.bzl", "ocaml_dependencies")
-ocaml_dependencies()
+load("//bzl:deps.bzl", "uri_deps")
+uri_deps()
+load("//bzl:deps_setup.bzl", "uri_deps_setup")
+uri_deps_setup()
 
 load("@obazl_rules_ocaml//ocaml:bootstrap.bzl", "ocaml_configure")
 load("//bzl:opam.bzl", "opam")
