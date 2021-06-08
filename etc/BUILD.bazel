@@ -1,4 +1,4 @@
-load("//:bzl/services.bzl", "services_lib")
+load("//bzl:services.bzl", "services_lib")
 
 services_lib(
     name = "short",

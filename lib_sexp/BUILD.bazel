@@ -6,7 +6,7 @@ load(
     "ppx_module",
 )
 load("@bazel_skylib//rules:write_file.bzl", "write_file")
-load("//:bzl/library.bzl", "copy_interface")
+load("//bzl:library.bzl", "copy_interface")
 
 copy_interface(
     name = "uri_sexp",

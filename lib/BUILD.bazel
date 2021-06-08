@@ -1,4 +1,4 @@
-load("//:bzl/library.bzl", "simple_lib")
+load("//bzl:library.bzl", "simple_lib")
 
 simple_lib(
     name = "lib-uri",

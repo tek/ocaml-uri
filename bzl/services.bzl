@@ -1,4 +1,4 @@
-load("//:bzl/library.bzl", "copy_interface", "lib")
+load("//bzl:library.bzl", "copy_interface", "lib")
 
 def generate_services_module(name, ext):
     native.genrule(
