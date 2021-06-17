@@ -1,14 +1,17 @@
 workspace(name = "uri")
 
 load("//bzl:deps.bzl", "uri_deps")
+
 uri_deps()
+
 load("//bzl:deps_setup.bzl", "uri_setup")
+
 uri_setup()
 
 load("@obazl_rules_ocaml//ocaml:bootstrap.bzl", "ocaml_configure")
 load("//bzl:opam.bzl", "opam")
 
 ocaml_configure(
-    build = "4.12",
+    build = "4.10",
     opam = opam,
 )

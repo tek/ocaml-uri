@@ -5,9 +5,9 @@ def uri_deps():
     maybe(
         http_archive,
         "obazl_rules_ocaml",
-        strip_prefix = "rules_ocaml-c7c0b864e91c1e248d2b0f07bcd4e5265f0c042d",
+        strip_prefix = "rules_ocaml-6cfa9f4a87b4b31653dd17655668ffe86588951f",
         urls = [
-            "https://github.com/tek/rules_ocaml/archive/c7c0b864e91c1e248d2b0f07bcd4e5265f0c042d.tar.gz"
+            "https://github.com/tek/rules_ocaml/archive/6cfa9f4a87b4b31653dd17655668ffe86588951f.tar.gz",
         ],
-        sha256 = "66834f7cf2eabdf86258d4fb0ff07b56fedf9c430149dd3b3e528767e12c1fe1",
+        sha256 = "975eaa0158536a69f791aec7e8781f0f7001883d67f0742c28cd4cbf9df41386",
     )

@@ -10,8 +10,8 @@ ocaml_module(
     deps_opam = ["oUnit"],
     struct = "test_runner.ml",
     deps = [
-        "//etc:services_short",
-        "//lib:lib-uri",
+        "//etc:#Services_short",
+        "//lib:#Uri",
     ],
 )
 
@@ -25,9 +25,9 @@ ppx_module(
     deps_opam = ["oUnit"],
     struct = "test_runner_sexp.ml",
     deps = [
-        "//etc:services_short",
-        "//lib:lib-uri",
-        "//lib_sexp:lib-uri-sexp",
+        "//etc:#Services_short",
+        "//lib:#Uri",
+        "//lib_sexp:#Uri_sexp",
     ],
 )
 

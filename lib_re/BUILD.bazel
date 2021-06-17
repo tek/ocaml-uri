@@ -1,13 +1,13 @@
-load("//bzl:library.bzl", "simple_lib")
+load("@obazl_rules_ocaml//dsl:library.bzl", "lib", "sig")
 
-simple_lib(
-    name = "lib-uri_re",
+lib(
+    name = "uri-re",
     deps_opam = [
         "stringext",
         "re",
     ],
-    modules = [
-        "uri_re",
-        "uri_legacy",
-    ],
+    modules = dict(
+        uri_legacy = sig(),
+        uri_re = sig(),
+    ),
 )

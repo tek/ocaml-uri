@@ -1,4 +1,4 @@
-load("//bzl:library.bzl", "copy_interface", "lib")
+load("@obazl_rules_ocaml//dsl:library.bzl", "copy_interface", "lib", "sig")
 
 def generate_services_module(name, ext):
     native.genrule(
@@ -14,6 +14,8 @@ def services_lib(name, services_name):
     generate_services_module(services_name, name)
     lib(
         name = "services_" + name,
-        modules = [(services_name, "gen_" + services_name, services_name + "_sig", services_name + "_mli")],
-        deps = ["//lib:lib-uri"],
+        modules = {
+            services_name: sig(mod_src = ":gen_" + services_name, sig_src = services_name + "_mli"),
+        },
+        deps = ["//lib:#Uri"],
     )

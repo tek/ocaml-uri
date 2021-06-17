@@ -1,55 +1,12 @@
-load(
-    "@obazl_rules_ocaml//ocaml:rules.bzl",
-    "ocaml_signature",
-    "ppx_executable",
-    "ppx_library",
-    "ppx_module",
-)
-load("@bazel_skylib//rules:write_file.bzl", "write_file")
-load("//bzl:library.bzl", "copy_interface")
+load("@obazl_rules_ocaml//dsl:library.bzl", "lib", "sig")
 
-copy_interface(
-    name = "uri_sexp",
-    out = "Uri_sexp",
-)
-
-ocaml_signature(
-    name = "uri_sexp_sig",
-    src = "uri_sexp_mli",
-    deps_opam = ["sexplib"],
-    deps = ["//lib:lib-uri"],
-)
-
-ppx_module(
-    name = "driver",
-    deps_opam = ["ppxlib"],
-    struct = ":driver.ml",
-)
-
-write_file(
-    name = "gendriver",
-    out = "driver.ml",
-    content = ["let () = Ppxlib.Driver.standalone ()"],
-)
-
-ppx_executable(
-    name = "sexp_preprocessor",
-    deps_opam = ["ppx_sexp_conv"],
-    main = ":driver",
-)
-
-ppx_module(
-    name = "uri_sexp",
-    deps_opam = ["ppx_sexp_conv"],
-    ppx = ":sexp_preprocessor",
-    ppx_print = "@ppx//print:text",
-    sig = ":uri_sexp_sig",
-    struct = "uri_sexp.ml",
-    deps = ["//lib:lib-uri"],
-)
-
-ppx_library(
-    name = "lib-uri-sexp",
-    modules = [":uri_sexp"],
-    visibility = ["//visibility:public"],
+lib(
+    name = "uri-sexp",
+    deps_opam = [
+        "sexplib",
+        "ppx_sexp_conv",
+    ],
+    modules = dict(uri_sexp = sig()),
+    ppx = ["ppx_sexp_conv"],
+    deps = ["//lib:#Uri"],
 )
